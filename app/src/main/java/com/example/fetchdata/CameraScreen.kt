@@ -1,10 +1,12 @@
 package com.example.fetchdata
 
 import android.annotation.SuppressLint
+import android.webkit.WebView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -23,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,7 +112,15 @@ fun CameraScreen(
         },
         content = {
             Column(modifier = Modifier.padding(it)) {
-                Text("Hello World")
+                AndroidView(
+                    factory = { context ->
+                        WebView(context).apply {
+                            //yaha bhi change kr
+                            loadUrl("https://www.google.com/")
+                        }
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     )
